@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 router.use(express.json());
 
-
 const storage = multer.diskStorage({
     destination: function(req,file, cb){
         cb(null, './images/');
@@ -93,6 +92,8 @@ router.post('/', verifytoken ,upload.single('profilePicture') ,(req, res, next) 
 });
 
 router.get('/:userName', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const userName = req.params.userName;
     User.findOne({ userName : userName})
     .exec()
