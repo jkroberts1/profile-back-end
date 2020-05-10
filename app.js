@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 mongoose.connect('mongodb+srv://admin:admin@1234@profiles-app-pxuos.mongodb.net/test?retryWrites=true&w=majority',
 {
     useNewUrlParser: true,
