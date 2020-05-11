@@ -118,7 +118,7 @@ router.get('/:userName', (req, res, next) => {
 
 router.post('/authenticate', (req, res, next) => {
     console.log(req.body.key);
-        var token = jwt.sign("s)sDzDyU~RS5,hWOGcHTQ4v^JDjF}U" , req.body.key, { expiresIn: '1h' });
+        var token = jwt.sign({sign:"s)sDzDyU~RS5,hWOGcHTQ4v^JDjF}U"} , req.body.key, { expiresIn: '1h' });
         res.status(200).json({
             token : token
         });
