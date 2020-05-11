@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://admin:admin@1234@profiles-app-pxuos.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect(process.env.REACT_APP_MONGOOSE,
 {
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -53,7 +53,7 @@ router.get('/', (req, res, next) => {
 router.post('/', verifytoken ,upload.single('profilePicture') ,(req, res, next) => {
     router.use(express.json());
    
-    jwt.verify(req.token,"AB1234", function(err, decoded){
+    jwt.verify(req.token,process.env.REACT_APP_SECRET_KEY, function(err, decoded){
         if(err)
         {
             res.sendStatus(403);
@@ -64,7 +64,6 @@ router.post('/', verifytoken ,upload.single('profilePicture') ,(req, res, next) 
             .then(doc => {
                 if(doc)
                 {
-                    console.log('test');
                     res.status(409).json({
                         message : "Profile with that userName already exists"
                     });
@@ -119,7 +118,7 @@ router.get('/:userName', (req, res, next) => {
 
 router.post('/authenticate', (req, res, next) => {
     console.log(req.body.key);
-        var token = jwt.sign("s)sDzDyU~RS5,hWOGcHTQ4v^JDjF}U" ,req.body.key);
+        var token = jwt.sign("s)sDzDyU~RS5,hWOGcHTQ4v^JDjF}U" , req.body.key, { expiresIn: '1h' });
         res.status(200).json({
             token : token
         });
